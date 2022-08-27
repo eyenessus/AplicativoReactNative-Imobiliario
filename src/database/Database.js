@@ -123,7 +123,7 @@ AtualizarImovel(id, imovel) {
         this.Conectar().then((db) => {      
             db.transaction((tx) => {    
                 //Query SQL para deletar um item da base de dados    
-                tx.executeSql('DELETE FROM Imovel WHERE idImovel = ?', [id]).then(([tx, results]) => {          
+                tx.executeSql('DELETE FROM Imovel WHERE id = ?', [id]).then(([tx, results]) => {          
                     console.log(results);          
                     resolve(results);        
                 });      

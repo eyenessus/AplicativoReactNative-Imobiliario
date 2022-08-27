@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import {View, Text} from 'react-native';
+import {View, Text, ImageBackground} from 'react-native';
 import Database from "../database/Database";
 import ItemImovel from "../Componentes/itemImovel"
 import { ScrollView } from "react-native-gesture-handler";
+const imagenzinha = require('../Imagens/praias-de-dubai.jpg');
 export default class Listagem extends Component{
     constructor(props){
     super(props);
@@ -18,16 +19,19 @@ export default class Listagem extends Component{
     ExcluirImovel = (id) => {
       const banco = new Database();
       banco.DeletarImovel(id);
+      this.MostrarImovel();
     }
     render(){
         return(
-            <View style={{backgroundColor: 'gold',height:610}}>
+          <ImageBackground source={imagenzinha} resizeMode="cover">
+<View style={{height:610}}>
               <ScrollView>
               {
                     this.state.listaPessoas.map(item => (
               <Text style={{textAlign: 'center', fontSize:20, fontWeight: 'bold'}}>
+                
                 <ItemImovel
-                id={item.idImovel} 
+                id={item.id} 
                 endereco={item.endereco}
                 finalidade={item.finalidade}
                 tipoimovel={item.tipoimovel}
@@ -42,6 +46,8 @@ export default class Listagem extends Component{
               </ScrollView>
            
         </View>
+          </ImageBackground>
+            
         )
     }
 }
